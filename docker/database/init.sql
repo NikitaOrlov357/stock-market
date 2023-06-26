@@ -5,12 +5,13 @@ DROP TABLE IF EXISTS commission;
 
 CREATE TABLE users(
     id SERIAL NOT NULL PRIMARY KEY,--уникальный номер записи
-    name  VARCHAR NOT NULL UNIQUE, -- имя пользователя
-    password VARCHAR -- init пароль
+    name VARCHAR NOT NULL UNIQUE, -- имя пользователя
+    password VARCHAR,-- init пароль
+    balance_id SERIAL NOT NULL
 );
 
 CREATE TABLE balance(
-	id SERIAL NOT NULL PRIMARY KEY,
+	id INT NOT NULL REFERENCES users(balance_id),
 	amount INT NOT NULL,
 	currency INT NOT NULL
 );
@@ -27,3 +28,6 @@ CREATE TABLE commission(
 	amount INT NOT NULL,
 	currency INT NOT NULL
 );
+
+
+INSERT INTO users (id, password, balance_id) VALUES (1, nekit, nekit, 11)
